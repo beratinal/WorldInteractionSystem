@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.15237, y: 0, z: 6.78372}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -126,4 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InteractionSystem.Runtime.Interactables.KeyInteractable
   m_InteractionPrompt: Pick up Key
   m_InteractionType: 0
+  m_HoldDuration: 2
+  m_Renderer: {fileID: 0}
+  m_BrightnessAmount: 0.15
   m_ItemData: {fileID: 11400000, guid: 27e179a8a206c1645a6be22956f7f8a0, type: 2}
