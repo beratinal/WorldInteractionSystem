@@ -78,31 +78,31 @@ Eşya verileri (Ad, İkon, Prefab) ScriptableObject'ler üzerinde tutuldu.
 
 ### Zorunlu (Must Have)
 
-- [x] / [ ] Core Interaction System
-  - [x] / [ ] IInteractable interface
-  - [x] / [ ] InteractionDetector
-  - [x] / [ ] Range kontrolü
+- [x] Core Interaction System
+  - [x] IInteractable interface
+  - [x] InteractionDetector
+  - [x] Range kontrolü
 
-- [x] / [ ] Interaction Types
-  - [x] / [ ] Instant
-  - [x] / [ ] Hold
-  - [x] / [ ] Toggle
+- [x] Interaction Types
+  - [x] Instant
+  - [x] Hold
+  - [x] Toggle
 
-- [x] / [ ] Interactable Objects
-  - [x] / [ ] Door (locked/unlocked)
-  - [x] / [ ] Key Pickup
-  - [x] / [ ] Switch/Lever
-  - [x] / [ ] Chest/Container
+- [x] Interactable Objects
+  - [x] Door (locked/unlocked)
+  - [x] Key Pickup
+  - [x] Switch/Lever
+  - [x] Chest/Container
 
-- [x] / [ ] UI Feedback
-  - [x] / [ ] Interaction prompt
-  - [x] / [ ] Dynamic text
-  - [x] / [ ] Hold progress bar
-  - [x] / [ ] Cannot interact feedback
+- [x] UI Feedback
+  - [x] Interaction prompt
+  - [x] Dynamic text
+  - [x] Hold progress bar
+  - [x] Cannot interact feedback
 
-- [x] / [ ] Simple Inventory
-  - [x] / [ ] Key toplama
-  - [x] / [ ] UI listesi
+- [x] Simple Inventory
+  - [x] Key toplama
+  - [x] UI listesi
 
 ### Bonus (Nice to Have)
 
