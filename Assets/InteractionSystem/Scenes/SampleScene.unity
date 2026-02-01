@@ -596,18 +596,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 629755320794626314, guid: dd39ed8392f9f604cb60dd705ee51f0d, type: 3}
-      propertyPath: m_DoorSound
-      value: 
-      objectReference: {fileID: 8300000, guid: bf5f2e1401eb36b46937de43a7c2a444, type: 3}
-    - target: {fileID: 1054133001932939537, guid: dd39ed8392f9f604cb60dd705ee51f0d, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1054133001932939537, guid: dd39ed8392f9f604cb60dd705ee51f0d, type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1836737197672778369, guid: dd39ed8392f9f604cb60dd705ee51f0d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.7563921
@@ -665,14 +653,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 787226124710525873, guid: 9ca14ade358f0cc4f86ff60bc98ff47c, type: 3}
-      propertyPath: m_Size.x
-      value: 0.22762795
-      objectReference: {fileID: 0}
-    - target: {fileID: 787226124710525873, guid: 9ca14ade358f0cc4f86ff60bc98ff47c, type: 3}
-      propertyPath: m_Center.x
-      value: -0.041434966
-      objectReference: {fileID: 0}
     - target: {fileID: 1684984125044905951, guid: 9ca14ade358f0cc4f86ff60bc98ff47c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -730,63 +710,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ca14ade358f0cc4f86ff60bc98ff47c, type: 3}
---- !u!1001 &4039841754567034878
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3789777869022366757, guid: 44a0b4d24b6f7c543a0660022f97cc58, type: 3}
-      propertyPath: m_Name
-      value: P_Cube
-      objectReference: {fileID: 0}
-    - target: {fileID: 3974714910104832650, guid: 44a0b4d24b6f7c543a0660022f97cc58, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -7.67
-      objectReference: {fileID: 0}
-    - target: {fileID: 3974714910104832650, guid: 44a0b4d24b6f7c543a0660022f97cc58, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3974714910104832650, guid: 44a0b4d24b6f7c543a0660022f97cc58, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 4.22
-      objectReference: {fileID: 0}
-    - target: {fileID: 3974714910104832650, guid: 44a0b4d24b6f7c543a0660022f97cc58, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3974714910104832650, guid: 44a0b4d24b6f7c543a0660022f97cc58, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3974714910104832650, guid: 44a0b4d24b6f7c543a0660022f97cc58, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3974714910104832650, guid: 44a0b4d24b6f7c543a0660022f97cc58, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3974714910104832650, guid: 44a0b4d24b6f7c543a0660022f97cc58, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3974714910104832650, guid: 44a0b4d24b6f7c543a0660022f97cc58, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3974714910104832650, guid: 44a0b4d24b6f7c543a0660022f97cc58, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 44a0b4d24b6f7c543a0660022f97cc58, type: 3}
 --- !u!1001 &4650688949638149587
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -795,18 +718,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 286142921148270028, guid: 2084c63f953d62a40bcc69dc1bed8aa2, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 286142921148270028, guid: 2084c63f953d62a40bcc69dc1bed8aa2, type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 424686613110693335, guid: 2084c63f953d62a40bcc69dc1bed8aa2, type: 3}
-      propertyPath: m_DoorSound
-      value: 
-      objectReference: {fileID: 8300000, guid: bf5f2e1401eb36b46937de43a7c2a444, type: 3}
     - target: {fileID: 1451561670860861020, guid: 2084c63f953d62a40bcc69dc1bed8aa2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -925,10 +836,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_Chest_Base
       objectReference: {fileID: 0}
-    - target: {fileID: 5486861502296945139, guid: a719e94284baa914389f05a8322a859f, type: 3}
-      propertyPath: m_OpenSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 10bf1b6f537cf8b4697a4d3599fa2159, type: 3}
     - target: {fileID: 6984389774037416501, guid: a719e94284baa914389f05a8322a859f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.41
@@ -968,14 +875,6 @@ PrefabInstance:
     - target: {fileID: 6984389774037416501, guid: a719e94284baa914389f05a8322a859f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7447801464529801704, guid: a719e94284baa914389f05a8322a859f, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7447801464529801704, guid: a719e94284baa914389f05a8322a859f, type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1098,7 +997,6 @@ SceneRoots:
   - {fileID: 1594767570}
   - {fileID: 1042544441166027000}
   - {fileID: 8359693488872237585}
-  - {fileID: 4039841754567034878}
   - {fileID: 7291148580861907556}
   - {fileID: 233921144151417994}
   - {fileID: 6035521859144097411}

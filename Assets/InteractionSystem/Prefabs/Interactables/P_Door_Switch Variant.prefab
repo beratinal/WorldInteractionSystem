@@ -119,6 +119,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 286142921148270028, guid: 2084c63f953d62a40bcc69dc1bed8aa2, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 286142921148270028, guid: 2084c63f953d62a40bcc69dc1bed8aa2, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 424686613110693335, guid: 2084c63f953d62a40bcc69dc1bed8aa2, type: 3}
+      propertyPath: m_DoorSound
+      value: 
+      objectReference: {fileID: 8300000, guid: bf5f2e1401eb36b46937de43a7c2a444, type: 3}
     - target: {fileID: 424686613110693335, guid: 2084c63f953d62a40bcc69dc1bed8aa2, type: 3}
       propertyPath: m_RequiredKey
       value: 
@@ -166,6 +178,10 @@ PrefabInstance:
     - target: {fileID: 1451561670860861020, guid: 2084c63f953d62a40bcc69dc1bed8aa2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6381044053729803905, guid: 2084c63f953d62a40bcc69dc1bed8aa2, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6544982713994956412, guid: 2084c63f953d62a40bcc69dc1bed8aa2, type: 3}
       propertyPath: m_Name
