@@ -2,65 +2,101 @@ using UnityEngine;
 
 namespace InteractionSystem.Runtime.Core
 {
-    /// <summary>
-    /// Etkileþim türlerini belirler.
-    /// </summary>
     public enum InteractionType
     {
-        Instant, 
-        Hold,    
-        Toggle   
+        Instant,
+        Hold,
+        Toggle
     }
 
-    /// <summary>
-    /// Tüm etkileþimli nesneler için temel (base) sýnýf.
-    /// Kod tekrarýný önlemek için ortak mantýðý barýndýrýr.
-    /// </summary>
     public abstract class BaseInteractable : MonoBehaviour, IInteractable
     {
-        #region Private Fields
+        #region Core Settings
 
-        [Header("Base Settings")]
-        [Tooltip("UI üzerinde oyuncuya gösterilecek mesaj.")]
-        [SerializeField] private string m_InteractionPrompt = "Interact";
-
-        [Tooltip("Bu nesnenin etkileþim türü.")]
+        [Header("Interaction Settings")]
+        [SerializeField] private string m_InteractionPrompt;
         [SerializeField] private InteractionType m_InteractionType = InteractionType.Instant;
-
-        [Tooltip("Hold etkileþimi için kaç saniye basýlý tutulmalý?")]
         [SerializeField] private float m_HoldDuration = 2.0f;
 
-        public float HoldDuration => m_HoldDuration;
+        #endregion
+
+        #region Highlight Settings (SUBTLE - HAFÝF)
+
+        [Header("Highlight Settings")]
+        [Tooltip("Rengi hafifçe açýlacak parça.")]
+        [SerializeField] private Renderer m_Renderer;
+
+        [Tooltip("Ne kadar aydýnlansýn?")]
+        [Range(0f, 1f)]
+        [SerializeField] private float m_BrightnessAmount = 0.15f;
+
+        private Color m_OriginalColor;
+        private Material m_TargetMaterial;
+        private bool m_IsURP = false; 
+
         #endregion
 
         #region Public Properties
 
-        /// <inheritdoc />
         public string InteractionPrompt => m_InteractionPrompt;
-
-        /// <summary>
-        /// Nesnenin etkileþim türünü döndürür.
-        /// </summary>
         public InteractionType Type => m_InteractionType;
+        public float HoldDuration => m_HoldDuration;
 
         #endregion
 
-        #region Public Methods
+        #region Unity Methods
 
-        /// <inheritdoc />
-        public abstract void OnInteract();
+        protected virtual void Awake()
+        {
+            if (m_Renderer == null) m_Renderer = GetComponentInChildren<Renderer>();
 
-        /// <inheritdoc />
+            if (m_Renderer != null)
+            {
+                m_TargetMaterial = m_Renderer.material;
+
+                if (m_TargetMaterial.HasProperty("_BaseColor")) 
+                {
+                    m_OriginalColor = m_TargetMaterial.GetColor("_BaseColor");
+                    m_IsURP = true;
+                }
+                else if (m_TargetMaterial.HasProperty("_Color"))
+                {
+                    m_OriginalColor = m_TargetMaterial.color;
+                    m_IsURP = false;
+                }
+            }
+        }
+
+        #endregion
+
+        #region IInteractable Methods
+
         public virtual void OnFocus()
         {
-            // Ýsteðe baðlý: Ýleride buraya Highlight (parlama) kodu ekleyeceðiz.
+            if (m_Renderer != null && m_TargetMaterial != null)
+            {
+                Color brighterColor = m_OriginalColor + new Color(m_BrightnessAmount, m_BrightnessAmount, m_BrightnessAmount);
+
+                if (m_IsURP)
+                    m_TargetMaterial.SetColor("_BaseColor", brighterColor);
+                else
+                    m_TargetMaterial.color = brighterColor;
+            }
         }
 
-        /// <inheritdoc />
         public virtual void OnLoseFocus()
         {
-            // Ýsteðe baðlý: Highlight kapatma kodu.
+            if (m_Renderer != null && m_TargetMaterial != null)
+            {
+                // Orijinal renge geri dön
+                if (m_IsURP)
+                    m_TargetMaterial.SetColor("_BaseColor", m_OriginalColor);
+                else
+                    m_TargetMaterial.color = m_OriginalColor;
+            }
         }
+
+        public abstract void OnInteract();
 
         #endregion
     }
