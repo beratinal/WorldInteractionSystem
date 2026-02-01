@@ -21,6 +21,27 @@ Bu proje, Ludu Arts staj başvurusu kapsamında geliştirilmiş; genişletilebil
 - **E (Basılı Tut):** Süreli Etkileşim (Sandık açma)
 - **TAB:** Envanteri Aç/Kapat
 
+### Test Senaryoları
+
+1. **Door Test:**
+   - Kapıya yaklaşın, "Open Door" mesajını görün
+   - E'ye basın, kapı açılsın
+   - Tekrar basın, kapı kapansın
+
+2. **Key + Locked Door Test:**
+   - Kilitli kapıya yaklaşın, "Locked - Key Required" mesajını görün
+   - Anahtarı bulun ve toplayın
+   - Kilitli kapıya geri dönün, şimdi açılabilir olmalı
+
+3. **Switch Test:**
+   - Switch'e yaklaşın ve aktive edin
+   - Kapının tetiklendiğini görün
+
+4. **Chest Test:**
+   - Sandığa yaklaşın
+   - E'ye basılı tutun, progress bar dolsun
+   - Sandık açılsın ve içindeki item alınsın
+
 ## Mimari Kararlar
 
 ### 1. Interface Tabanlı Etkileşim (`IInteractable`)
@@ -35,6 +56,15 @@ Eşya verileri (Ad, İkon, Prefab) ScriptableObject'ler üzerinde tutuldu.
 ### 3. Raycast & Caching
 `InteractionDetector` scripti her karede Ray atar ancak `TryGetComponent` maliyetini düşürmek için son algılanan objeyi önbellekte (cache) tutar.
 
+### Kullanılan Design Patterns
+
+| Pattern | Kullanım Yeri | Neden |
+|---------|---------------|-------|
+| **Strategy** | `IInteractable` Interface | Kapı, Sandık ve Şalter gibi farklı nesnelerin aynı "Interact" komutuna farklı tepkiler vermesini sağlamak ve `if-else` karmaşasından kaçınmak için. |
+| **Observer** | `UnityEvents` (Switch System) | Şalterin (Subject), tetikleyeceği objeden (Observer) habersiz olması; yani kod bağımlılığı olmadan Inspector üzerinden ışık veya kapı bağlanabilmesi için. |
+| **Flyweight** (veya Data Object) | `ScriptableObjects` (Item Data) | Her eşya için ayrı bir sınıf oluşturmak yerine, ortak verileri (İsim, İkon, Prefab) tek bir veri dosyasında tutup bellek yönetimini optimize etmek için. |
+| **Singleton** | `InventoryManager` | Envanter durumuna ve UI güncellemelerine oyunun her yerinden tek bir referansla ulaşabilmek için. |
+
 ## Ludu Arts Standartlarına Uyum
 
 - **Klasör Yapısı:** Proje kök dizini temiz tutuldu. Tüm geliştirme `Assets/InteractionSystem` altında; `Scripts`, `Prefabs`, `Materials` gibi alt klasörlere ayrıldı. `_Dev` gibi geçici klasörler temizlendi.
@@ -43,6 +73,45 @@ Eşya verileri (Ad, İkon, Prefab) ScriptableObject'ler üzerinde tutuldu.
   - Private Serialized Fields: `m_` öneki (Örn: `m_InteractionRange`)
   - Scriptler: PascalCase ve Namespace kullanımı (`InteractionSystem.Runtime...`)
 - **Kod Kalitesi:** `[SerializeField]`, `[Header]`, `[Tooltip]` nitelikleri kullanılarak Inspector okunabilirliği artırıldı.
+
+## Tamamlanan Özellikler
+
+### Zorunlu (Must Have)
+
+- [x] / [ ] Core Interaction System
+  - [x] / [ ] IInteractable interface
+  - [x] / [ ] InteractionDetector
+  - [x] / [ ] Range kontrolü
+
+- [x] / [ ] Interaction Types
+  - [x] / [ ] Instant
+  - [x] / [ ] Hold
+  - [x] / [ ] Toggle
+
+- [x] / [ ] Interactable Objects
+  - [x] / [ ] Door (locked/unlocked)
+  - [x] / [ ] Key Pickup
+  - [x] / [ ] Switch/Lever
+  - [x] / [ ] Chest/Container
+
+- [x] / [ ] UI Feedback
+  - [x] / [ ] Interaction prompt
+  - [x] / [ ] Dynamic text
+  - [x] / [ ] Hold progress bar
+  - [x] / [ ] Cannot interact feedback
+
+- [x] / [ ] Simple Inventory
+  - [x] / [ ] Key toplama
+  - [x] / [ ] UI listesi
+
+### Bonus (Nice to Have)
+
+- [X] Animation entegrasyonu
+- [X] Sound effects
+- [X] Multiple keys / color-coded
+- [X] Interaction highlight
+- [ ] Save/Load states
+- [X] Chained interactions
 
 ## Bilinen Limitasyonlar
 
@@ -55,3 +124,12 @@ Eşya verileri (Ad, İkon, Prefab) ScriptableObject'ler üzerinde tutuldu.
 - **UnityEvent Entegrasyonu:** Şalter (Switch) sistemi, kod bağımlılığı olmadan Inspector üzerinden herhangi bir objeyi (Işık, Kapı, Particle) tetikleyebilecek esneklikte tasarlandı.
 - **Dinamik Crosshair & UI:** Oyuncu bir nesneye baktığında ilgili etkileşim metni (Örnek: "Press E to Open") dinamik olarak güncellenir.
 - **Fizik İyileştirmeleri:** Karakter kontrolcüsünde yokuş aşağı inerken havada kalma sorunu fizik tabanlı yerçekimi yamasıyla çözüldü.
+
+## İletişim
+
+| Bilgi | Değer |
+|-------|-------|
+| Ad Soyad | [Berat İnal] |
+| E-posta | [brtinal0@gmail.com] |
+| LinkedIn | [https://www.linkedin.com/in/berat-inal-2b6bb2218/] |
+| GitHub | [github.com/beratinal] |
