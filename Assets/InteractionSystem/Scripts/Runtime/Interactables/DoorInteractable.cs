@@ -79,10 +79,10 @@ namespace InteractionSystem.Runtime.Interactables
                 Debug.Log("[Door] Kilitli! Anahtar gerekiyor.");
             }
         }
-
-        private void ToggleDoor()
+        public void ToggleDoor()
         {
             m_IsOpen = !m_IsOpen;
+
             if (m_AnimationCoroutine != null) StopCoroutine(m_AnimationCoroutine);
 
             m_AnimationCoroutine = StartCoroutine(AnimateDoor(m_IsOpen ? m_OpenRotation : m_ClosedRotation));
