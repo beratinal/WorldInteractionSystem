@@ -5,6 +5,7 @@ using InteractionSystem.Runtime.Player;
 
 namespace InteractionSystem.Runtime.Interactables
 {
+    [RequireComponent(typeof(AudioSource))]
     public class DoorInteractable : BaseInteractable
     {
         #region Private Fields
@@ -24,6 +25,18 @@ namespace InteractionSystem.Runtime.Interactables
 
         [Tooltip("Açýlma hýzý.")]
         [SerializeField] private float m_AnimationSpeed = 2f;
+
+        [Header("Audio Settings (YENÝ)")]
+        [Tooltip("Kapý hareket sesi.")]
+        [SerializeField] private AudioClip m_DoorSound;
+
+        private AudioSource m_AudioSource;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            m_AudioSource = GetComponent<AudioSource>();
+        }
 
         private bool m_IsOpen = false;
         private Quaternion m_ClosedRotation;
@@ -83,9 +96,15 @@ namespace InteractionSystem.Runtime.Interactables
         {
             m_IsOpen = !m_IsOpen;
 
+            if (m_DoorSound != null && m_AudioSource != null)
+            {
+                m_AudioSource.PlayOneShot(m_DoorSound);
+            }
+
             if (m_AnimationCoroutine != null) StopCoroutine(m_AnimationCoroutine);
 
             m_AnimationCoroutine = StartCoroutine(AnimateDoor(m_IsOpen ? m_OpenRotation : m_ClosedRotation));
+
         }
 
         private IEnumerator AnimateDoor(Quaternion targetRotation)
