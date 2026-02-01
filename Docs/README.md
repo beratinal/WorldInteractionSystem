@@ -127,8 +127,9 @@ Eşya verileri (Ad, İkon, Prefab) ScriptableObject'ler üzerinde tutuldu.
 
 ## İletişim
 
+| Bilgi | Değer |
 |-------|-------|
-| Ad Soyad | Berat İnal |
-| E-posta | brtinal0@gmail.com |
-| LinkedIn | https://www.linkedin.com/in/berat-inal-2b6bb2218/ |
-| GitHub | github.com/beratinal |
+| Ad Soyad | [Berat İnal] |
+| E-posta | [brtinal0@gmail.com] |
+| LinkedIn | [https://www.linkedin.com/in/berat-inal-2b6bb2218/] |
+| GitHub | [github.com/beratinal] |
