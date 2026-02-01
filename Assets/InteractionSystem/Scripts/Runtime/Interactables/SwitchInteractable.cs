@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.Events; // <--- Bunu eklemezsek Eventleri kullanamayýz!
+using UnityEngine.Events; 
 using InteractionSystem.Runtime.Core;
 
 namespace InteractionSystem.Runtime.Interactables
@@ -28,7 +28,6 @@ namespace InteractionSystem.Runtime.Interactables
         [Tooltip("Þalter kapandýðýnda tetiklenecekler.")]
         public UnityEvent OnSwitchOff;
 
-        // Þalterin þu anki durumu
         private bool m_IsOn = false;
 
         #endregion
@@ -37,7 +36,7 @@ namespace InteractionSystem.Runtime.Interactables
 
         public override void OnInteract()
         {
-            // 1. Durumu tersine çevirme
+            // Durumu tersine çevirme
             m_IsOn = !m_IsOn;
 
             if (m_IsOn)
@@ -58,7 +57,6 @@ namespace InteractionSystem.Runtime.Interactables
 
         private void Update()
         {
-            // 3. Görsel Dönüþ Ýþlemi
             if (m_HandlePivot != null)
             {
                 Quaternion targetRot = Quaternion.Euler(m_IsOn ? m_OnRotation : m_OffRotation);

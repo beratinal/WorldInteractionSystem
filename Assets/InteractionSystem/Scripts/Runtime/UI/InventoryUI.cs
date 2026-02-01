@@ -72,7 +72,7 @@ namespace InteractionSystem.Runtime.UI
             {
                 RefreshUI();
 
-                // 1. Mouse'u serbest býrak
+                // Mouse'u serbest býrak
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
 
@@ -81,7 +81,7 @@ namespace InteractionSystem.Runtime.UI
             else
             {
 
-                // 1. Mouse'u kilitle
+                // Mouse'u kilitle
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
 

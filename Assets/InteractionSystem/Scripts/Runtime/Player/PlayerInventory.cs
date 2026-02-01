@@ -39,7 +39,6 @@ namespace InteractionSystem.Runtime.Player
                 m_Items.Add(item);
                 Debug.Log($"[Inventory] Eklendi: {item.ItemName}");
 
-                // Haber ver: Liste deðiþti!
                 OnInventoryChanged?.Invoke();
             }
         }
