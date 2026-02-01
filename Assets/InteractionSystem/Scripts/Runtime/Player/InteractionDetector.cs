@@ -1,37 +1,34 @@
 using UnityEngine;
-using System; 
-using InteractionSystem.Runtime.Core; 
+using System;
+using InteractionSystem.Runtime.Core;
 
 namespace InteractionSystem.Runtime.Player
 {
-   
     public class InteractionDetector : MonoBehaviour
     {
         #region Private Fields
 
         [Header("Detection Settings")]
-        [Tooltip("Etkileþime geçilebilecek maksimum mesafe.")]
         [SerializeField] private float m_InteractionRange = 3.0f;
-
-        [Tooltip("Hangi layer'daki nesnelerin taranacaðýný belirler.")]
         [SerializeField] private LayerMask m_InteractableLayer;
-
-        [Tooltip("Etkileþim için kullanýlacak tuþ.")]
         [SerializeField] private KeyCode m_InteractionKey = KeyCode.E;
 
         [Header("References")]
-        [Tooltip("Raycast'in çýkýþ noktasý.")]
         [SerializeField] private Transform m_CameraTransform;
 
-     
         private IInteractable m_CurrentInteractable;
+
+        // HOLD Mekaniði için sayaç
+        private float m_HoldTimer = 0f;
 
         #endregion
 
         #region Events
 
-      
         public event Action<IInteractable> OnInteractableChanged;
+
+        // UI'daki barý güncellemek için event (0.0 ile 1.0 arasý deðer gönderir)
+        public event Action<float> OnInteractionProgress;
 
         #endregion
 
@@ -39,17 +36,7 @@ namespace InteractionSystem.Runtime.Player
 
         private void Awake()
         {
-           
-            if (m_CameraTransform == null)
-            {
-                m_CameraTransform = Camera.main?.transform;
-
-              
-                if (m_CameraTransform == null)
-                {
-                    Debug.LogError("[InteractionDetector] Camera Transform atanmamýþ ve Main Camera bulunamadý!");
-                }
-            }
+            if (m_CameraTransform == null) m_CameraTransform = Camera.main?.transform;
         }
 
         private void Update()
@@ -58,23 +45,10 @@ namespace InteractionSystem.Runtime.Player
             HandleInput();
         }
 
-        // Editörde ýþýný görebilmek için yardýmcý çizgi
-        private void OnDrawGizmos()
-        {
-            if (m_CameraTransform != null)
-            {
-                Gizmos.color = Color.yellow;
-                Gizmos.DrawRay(m_CameraTransform.position, m_CameraTransform.forward * m_InteractionRange);
-            }
-        }
-
         #endregion
 
         #region Private Methods
 
-        
-        // Her karede Raycast atarak etkileþimli nesne arar.
-       
         private void HandleRaycast()
         {
             if (m_CameraTransform == null) return;
@@ -82,12 +56,10 @@ namespace InteractionSystem.Runtime.Player
             Ray ray = new Ray(m_CameraTransform.position, m_CameraTransform.forward);
             RaycastHit hit;
 
-           
             bool hitSomething = Physics.Raycast(ray, out hit, m_InteractionRange, m_InteractableLayer);
 
             if (hitSomething)
             {
-                // Çarptýðýmýz objede IInteractable var mý?
                 if (hit.collider.TryGetComponent(out IInteractable interactable))
                 {
                     if (m_CurrentInteractable != interactable)
@@ -118,6 +90,7 @@ namespace InteractionSystem.Runtime.Player
                 return;
             }
 
+            // TÜRÜNE GÖRE ÝÞLEM
             switch (baseInteractable.Type)
             {
                 case InteractionType.Instant:
@@ -129,25 +102,55 @@ namespace InteractionSystem.Runtime.Player
                     break;
 
                 case InteractionType.Hold:
-                    if (Input.GetKey(m_InteractionKey))
-                    {
-                        m_CurrentInteractable.OnInteract();
-                    }
+                    HandleHoldInput(baseInteractable);
                     break;
+            }
+        }
+
+        private void HandleHoldInput(BaseInteractable interactable)
+        {
+            // Tuþa basýlý tutuluyor mu?
+            if (Input.GetKey(m_InteractionKey))
+            {
+                m_HoldTimer += Time.deltaTime;
+
+                float progress = Mathf.Clamp01(m_HoldTimer / interactable.HoldDuration);
+
+                // UI'a haber ver
+                OnInteractionProgress?.Invoke(progress);
+
+                // Süre doldu mu?
+                if (m_HoldTimer >= interactable.HoldDuration)
+                {
+                    m_CurrentInteractable.OnInteract();
+                    m_HoldTimer = 0f; 
+                    OnInteractionProgress?.Invoke(0f); 
+                }
+            }
+            else
+            {
+                // Tuþ býrakýldýysa sayacý sýfýrla
+                if (m_HoldTimer > 0f)
+                {
+                    m_HoldTimer = 0f;
+                    OnInteractionProgress?.Invoke(0f);
+                }
             }
         }
 
         private void ChangeInteractable(IInteractable newInteractable)
         {
             m_CurrentInteractable?.OnLoseFocus();
-
             m_CurrentInteractable = newInteractable;
             m_CurrentInteractable?.OnFocus();
+
+            // Yeni nesneye geçince sayacý sýfýrla
+            m_HoldTimer = 0f;
+            OnInteractionProgress?.Invoke(0f);
 
             OnInteractableChanged?.Invoke(m_CurrentInteractable);
         }
 
-        // Odaklanmayý temizler.
         private void ClearInteractable()
         {
             if (m_CurrentInteractable != null)
@@ -155,6 +158,8 @@ namespace InteractionSystem.Runtime.Player
                 m_CurrentInteractable.OnLoseFocus();
                 m_CurrentInteractable = null;
 
+                m_HoldTimer = 0f;
+                OnInteractionProgress?.Invoke(0f);
                 OnInteractableChanged?.Invoke(null);
             }
         }

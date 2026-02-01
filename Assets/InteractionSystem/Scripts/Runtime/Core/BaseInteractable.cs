@@ -27,6 +27,10 @@ namespace InteractionSystem.Runtime.Core
         [Tooltip("Bu nesnenin etkileþim türü.")]
         [SerializeField] private InteractionType m_InteractionType = InteractionType.Instant;
 
+        [Tooltip("Hold etkileþimi için kaç saniye basýlý tutulmalý?")]
+        [SerializeField] private float m_HoldDuration = 2.0f;
+
+        public float HoldDuration => m_HoldDuration;
         #endregion
 
         #region Public Properties
